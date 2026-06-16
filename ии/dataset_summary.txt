@@ -1,0 +1,13 @@
+Dataset summary
+============================================================
+Total events: 1323
+
+Class distribution:
+  bruteforce: 1148
+  benign: 149
+  suspicious_upload: 26
+
+Event type distribution:
+  AUTH: 1216
+  UPLOAD: 54
+  SESSION: 53
