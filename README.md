@@ -31,7 +31,18 @@ Random Forest — многоклассовый классификатор
 PHP — локальное веб-приложение со входом / загрузкой и проверкой блок-листа
 Ubuntu + Kali Linux на Oracle VirtualBox — лабораторная среда
 Структура репозитория
-Поправьте под ваши реальные файлы.
+.
+├── webapp/                 # PHP-веб-приложение (вход, загрузка, блок-лист)
+├── attacks/                # Скрипты brute force + reverse shell
+├── data/
+│   ├── raw_events.csv      # сырые собранные логи (только пример)
+│   └── dataset.csv         # обработанный датасет
+├── prepare_dataset.py      # сырые логи → признаки + офлайн-метки
+├── train_model.py          # обучение модели Random Forest
+├── detector.py             # детектор реального времени (оповещения + блок IP)
+├── requirements.txt
+└── README.md
+
 
 Быстрый старт
 Требования
@@ -39,8 +50,22 @@ Oracle VirtualBox с целевой ВМ Ubuntu и атакующей ВМ Kali 
 Python 3.10+
 PHP 8.x на целевом хосте
 Установка
-
+git clone git@github.com:nurzz1313/brute-force-reverseshellattackmodeling-aidetection.git
+cd brute-force-reverseshellattackmodeling-aidetection
+pip install -r requirements.txt
 Запуск
+
+1. Запустить веб-приложение на целевом хосте
+php -S 0.0.0.0:8000 -t webapp/
+ 
+2. Подготовить датасет из собранных сырых логов
+python prepare_dataset.py
+ 
+3. Обучить модель
+python train_model.py
+ 
+4. Запустить детектор реального времени
+python detector.py
 
 
 Затем запустите сценарии атак с хоста Kali против цели и наблюдайте, как детектор генерирует оповещения и блокирует IP-адрес источника.
