@@ -1,0 +1,9 @@
+.DS_Store
+# Local ssh helper scripts accidentally created
+"eval \"$(ssh-agent -s)\""
+"eval \"$(ssh-agent -s)\".pub"
+# Local IDE and OS files
+*.swp
+*.swo
+*.tmp
+*.log
